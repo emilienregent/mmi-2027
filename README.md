@@ -302,3 +302,170 @@ Cet objet est ajouté automatiquement dans la scène à la création d'un nouvel
 La plupart des composants d'interaction ont des points communs. Ils sont sélectionnables, ce qui signifie qu'ils partagent une fonctionnalité intégrée pour visualiser les transitions entre les états.
 
 Les composants d'interaction ont au moins un UnityEvent qui est invoqué lorsque l'utilisateur interagit avec le composant d'une manière spécifique. Le système d'interface utilisateur détecte et enregistre toutes les exceptions qui se propagent hors du code attaché à UnityEvent.
+
+# Compiler un projet mobile
+
+Chaque plateforme mobile (Android ou iOS) nécessitent une installation particulière.
+Bien que la majorité du développement dans Unity reste agnostique de la plateforme, il est nécessaire de s'assurer que tous les prérequis pour tester et compiler un projet sur une plateforme donnée sont remplis.
+
+## Android
+
+### Configurer les prérequis
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/android-sdksetup.html)
+
+Pour créer une application Unity pour Android, vous devez d'abord configurer votre projet Unity pour qu'il prenne en charge Android.
+En utilisant le hub Unity vous pouvez installer ces prérequis en ajoutant certains modules.
+Les trois modules à installer sont :
+- Android Build Support
+- Android SDK & NDK Tools
+- OpenJDK
+
+La section External Tools pour Android vous permet de configurer les paramètres des outils de développement Android une fois installés. 
+Pour accéder à la section External Tools pour Android, accédez à Edit > Preferences (macOS: Unity > Settings), puis accédez à External Tools > Android.
+
+### Délivrer un exécutable .APK
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/android-BuildProcess.html)
+
+Unity utilise Gradle pour créer des applications Android. 
+Si vous souhaitez aller plus loin il peut être utile de comprendre le processus de création et la manière dont Unity interagit avec Gradle. 
+Néanmoins la majorité de la configuration peut être faite via les Player Settings directement dans Unity.
+
+> [!TIP]
+> Suivez le manuel pour découvrir [comment configurer votre exécutable Android](https://docs.unity3d.com/2022.3/Documentation/Manual/class-PlayerSettingsAndroid.html).
+
+### Tester et débugger sur Android
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/android-debugging-on-an-android-device.html)
+
+Pour déployer votre exécutable sur un mobile Android, il vous suffit de transférer le .apk sur le périphérique souhaité.
+Il vous faudra également vous assurer que vous avez autoriser l'exécution d'application non certifiées dans les options développeur.
+
+Unity prend en charge le débogage USB pour les appareils Android. Pour utiliser le débogage USB, activez les options de développement sur votre appareil.
+
+Il est à noter que le processus de configuration diffère pour Windows et macOS.
+
+Vous pouvez également utiliser le Device Simulator pour simuler l'apparence et le comportement d'une variété de périphériques Android.
+
+Cela vous permet de tester les interactions de base et d'afficher la disposition de votre application sur les appareils Android. 
+Le simulateur ne nécessite pas que vous compiliez votre application, ce qui signifie que vous pouvez déboguer les problèmes de disposition et effectuer des itérations rapidement.
+
+## iOS
+
+### Configurer les prérequis
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/ios-environment-setup.html)
+
+Pour créer une application Unity pour iOS, vous devez d'abord configurer votre projet Unity pour qu'il prenne en charge iOS. 
+Ces informations sont également pertinentes pour les plateformes iPadOS, macOS et tvOS. Pour prendre en charge iOS et d'autres systèmes d'exploitation Apple, un projet Unity nécessite :
+
+- Le module iOS Build Support.
+- Xcode ou Unity Build Automation
+
+Pour créer des applications iOS, Unity génère un projet Xcode, puis Xcode crée ce projet dans l'application finale. 
+Cela signifie que si vous souhaitez créer une application localement, vous devez installer Xcode. Xcode est uniquement disponible pour macOS. 
+Par conséquent, si votre machine de développement n'exécute pas macOS, vous ne pouvez pas créer d'application localement. 
+
+Cependant, Unity Build Automation peut créer des applications pour vous, ce qui vous permet de développer une application iOS sur une machine non macOS. 
+Il s'agit d'un service d'intégration continue qui crée des exécutables de votre projet depuis le cloud.
+
+### Délivrer un exécutable .IPA
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/iphone-BuildProcess.html)
+
+Le processus de création d'une application iOS avec Unity comporte deux étapes principales :
+
+- Unity génère un projet Xcode.
+- Xcode intègre le projet généré dans l'application.
+
+Une fois qu'Unity a généré le projet Xcode, vous pouvez créer et exécuter le projet Xcode à partir de la ligne de commande.
+
+Pour tester votre version sur un appareil iOS, vous avez besoin d'un identifiant Apple. 
+Cependant, pour distribuer votre application sur l'App Store et utiliser des services tels que Game Center ou les achats intégrés, vous devez vous inscrire au Apple Developer Program.
+
+Pour ajouter votre identifiant Apple à Xcode, suivez les étapes décrites dans la documentation d’Apple.
+
+> [!TIP]
+> Suivez le manuel pour découvrir [comment configurer votre exécutable iOS](https://docs.unity3d.com/2022.3/Documentation/Manual/class-PlayerSettingsiOS.html).
+
+### Tester et débugger sur iOS
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/ios-testing-and-debugging.html)
+
+Comme pour Android, le Device Simulator d’Unity peut simuler l’apparence et le comportement d’une variété d’appareils iOS. 
+Vous pouvez également ajouter d'autres appareils si nécessaire.
+
+Cependant le simulateur ne simule pas le back-end graphique du périphérique cible et restitue votre application de la même manière que l'éditeur Unity. 
+Cela signifie qu'il n'impose pas les limitations que le back-end graphique du périphérique cible pourrait avoir. 
+Il reste donc indispensable de tester sur un véritable périphérique.
+
+# Compiler un projet web
+
+### Configurer les prérequis
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/webgl-browsercompatibility.html)
+
+Pour créer une application WebGL, vous devez d’abord installer Unity Hub, puis ajouter le module WebGL Build Support.
+
+La prise en charge de WebGL par Unity pour les navigateurs de bureau varie selon le navigateur. 
+Elle prend en charge les navigateurs remplissant les conditions suivantes :
+
+- Le navigateur est compatible WebGL 2. 
+- Le navigateur est conforme aux normes HTML 5.
+- Le navigateur est 64 bits et prend en charge WebAssembly.
+
+> [!WARNING]
+> Unity WebGL ne prend pas en charge les appareils mobiles.
+> Il peut fonctionner sur des appareils haut de gamme, mais les appareils actuels ne sont souvent pas assez puissants et n’ont pas assez de mémoire pour prendre en charge le contenu Unity WebGL.
+
+### Délivrer un exécutable web
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/webgl-building.html)
+
+Pour créer une build pour WebGL, accédez à File > Build Settings dans le menu principal d’Unity. 
+Dans la liste de plateformes, sélectionnez WebGL, puis cliquez sur Switch Platform.
+
+Une fois les paramètres de build configurés, choisissez l'une des options suivantes :
+
+- Build : crée votre application dans un lecteur.
+- Build and Run : crée votre application dans un lecteur et ouvre ce lecteur sur votre plateforme cible.
+
+# Considérations cross-platform
+
+## Simuler sur plusieurs périphériques cibles
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/Manual/device-simulator-view.html)
+
+Utilisez la vue Simulateur pour prévisualiser l'apparence de votre application créée sur un appareil mobile. 
+Cela vous permet de tester les interactions de base et d'afficher la disposition de votre application sur les appareils iOS. 
+De plus, le simulateur ne nécessite pas que vous construisiez votre application, ce qui signifie que vous pouvez déboguer les problèmes de disposition et effectuer des itérations rapidement.
+
+## Compiler de façon sélective
+
+> [!NOTE]
+> Plus de détails dans le [manuel](https://docs.unity3d.com/2022.3/Documentation/Manual/PlatformDependentCompilation.html)
+
+La prise en charge d’Unity pour le langage C# inclut l’utilisation de directives.
+Celles-ci  vous permettent d’inclure ou d’exclure de manière sélective du code de la compilation, selon que certains symboles de script sont définis ou non.
+
+Différents symboles de script intégré sont définis lorsqu'un projet est compilé pour une plate-forme particulière. 
+Vous pouvez vérifier si ces symboles sont définis à l'aide d'un type spécial d'instruction if : `#if [SYMBOL] #endif`
+
+Le caractère dièse (#) devant if et endif indique que ces instructions sont des « directives ».
+Elles seront traitées pendant le processus de compilation, plutôt qu’au moment de l’exécution.
+
+Lorsque le projet est compilé dans d'autres builds que le symbole de script, il est entièrement omis. 
+Cela diffère de l'utilisation d'une structure `if .. then .. else` classique, qui peut uniquement contourner l'exécution de certaines parties du code au moment de l'exécution.
+
+> [!TIP]
+> Les symboles de script sont parfois appelés define symbols, preprocessor defines, ou simplement defines.

@@ -111,8 +111,6 @@ Vous pouvez également créer des variantes de Prefab qui vous permettent de reg
 Ouvrez-le dans le Prefab Mode en cliquant sur la flèche à droite de son nom dans la scène.
 Ou en double-cliquant sur le Prefab dans la fenêtre Project.
 
-![Image d'illustration](https://learn.unity.com/_next/image?url=https%3A%2F%2Fconnect-mediagw.unity.com%2Fh1%2F20200829%2Flearn%2Fimages%2Fb9bb8293-36d2-4611-be04-9d241c979ba1_image2.png&w=640&q=75)
-
 Ce mode vous permet d'afficher et de modifier le contenu du Prefab séparément de tout autre GameObject dans votre scène. 
 Les modifications que vous effectuez dans le Prefab Mode affectent toutes les instances de ce Prefab.
 
